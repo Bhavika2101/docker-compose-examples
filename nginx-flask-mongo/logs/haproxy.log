@@ -1,0 +1,46 @@
+Note: setting global.maxconn to 524269.
+Available polling systems :
+      epoll : pref=300,  test result OK
+       poll : pref=200,  test result OK
+     select : pref=150,  test result FAILED
+Total: 3 (2 usable), will use epoll.
+
+Available filters :
+	[BWLIM] bwlim-in
+	[BWLIM] bwlim-out
+	[CACHE] cache
+	[COMP] compression
+	[FCGI] fcgi-app
+	[SPOE] spoe
+	[TRACE] trace
+Using epoll() as the polling mechanism.
+00000000:service0.accept(0005)=001e from [172.21.0.1:33478] ALPN=<none>
+00000000:service0.clireq[001e:ffffffff]: GET / HTTP/1.1
+00000000:service0.clihdr[001e:ffffffff]: host: localhost:64641
+00000000:service0.clihdr[001e:ffffffff]: user-agent: curl/7.88.1
+00000000:service0.clihdr[001e:ffffffff]: accept: */*
+00000001:service1.accept(0006)=0020 from [172.21.0.3:58736] ALPN=<none>
+00000001:service1.clireq[0020:ffffffff]: GET / HTTP/1.0
+00000001:service1.clihdr[0020:ffffffff]: host: haproxy:59292
+00000001:service1.clihdr[0020:ffffffff]: user-agent: curl/7.88.1
+00000001:service1.clihdr[0020:ffffffff]: accept: */*
+00000001:backend.srvrep[0020:0021]: HTTP/1.1 200 OK
+00000001:backend.srvhdr[0020:0021]: server: Werkzeug/2.3.6 Python/3.10.12
+00000001:backend.srvhdr[0020:0021]: date: Tue, 25 Jul 2023 05:41:41 GMT
+00000001:backend.srvhdr[0020:0021]: content-type: text/html; charset=utf-8
+00000001:backend.srvhdr[0020:0021]: content-length: 31
+<134>Jul 25 05:41:41 haproxy[7]: {"srcIP":"172.21.0.3","backend":"backend","bIP":"172.21.0.4","bPORT":"9091","method":"GET","uri":"/","body":"-"}
+{"srcIP":"172.21.0.3","backend":"backend","bIP":"172.21.0.4","bPORT":"9091","method":"GET","uri":"/","body":"-"}
+00000001:backend.clicls[0020:0021]
+00000001:backend.srvcls[0020:0021]
+00000001:backend.closed[0020:0021]
+00000000:web.srvrep[001e:001f]: HTTP/1.1 200 OK
+00000000:web.srvhdr[001e:001f]: server: nginx/1.25.1
+00000000:web.srvhdr[001e:001f]: date: Tue, 25 Jul 2023 05:41:41 GMT
+00000000:web.srvhdr[001e:001f]: content-type: text/html; charset=utf-8
+00000000:web.srvhdr[001e:001f]: content-length: 31
+<134>Jul 25 05:41:41 haproxy[7]: {"srcIP":"172.21.0.1","backend":"web","bIP":"172.21.0.3","bPORT":"80","method":"GET","uri":"/","body":"-"}
+{"srcIP":"172.21.0.1","backend":"web","bIP":"172.21.0.3","bPORT":"80","method":"GET","uri":"/","body":"-"}
+00000000:web.clicls[001e:001f]
+00000000:web.srvcls[001e:001f]
+00000000:web.closed[001e:001f]
